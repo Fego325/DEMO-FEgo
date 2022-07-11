@@ -1,7 +1,17 @@
 #!/usr/bin/env groovy
 
 pipeline {
-    agent none
+    agent any
+
+    stage("build") {
+        steps {
+            script {
+                echo "building the application ..."
+                sh 'mvn package'
+            }
+        }
+    }
+
     stages {
        stage('test') {
             steps {
