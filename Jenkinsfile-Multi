@@ -4,6 +4,17 @@ pipeline {
     agent any
 
     stages {
+        stage ("Check changes") {
+            steps {
+                echo "Check if there are any changes pushed into this branch..."
+
+                script {
+                    changeCount = currentBuild.changeSets.size()
+                }
+
+                echo "${changeCount} commit(s) since last buid."
+            }
+        }
         stage("build") {
             steps {
                 script {
