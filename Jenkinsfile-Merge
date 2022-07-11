@@ -43,7 +43,7 @@ pipeline {
         }
         success {
             echo 'Notify GitLab'
-            updateGitlabCommitStatus(name: 'Jenkins', state: 'failed')
+            updateGitlabCommitStatus(name: 'Jenkins', state: 'success')
         }
         aborted {
             echo 'Notify GitLab'
