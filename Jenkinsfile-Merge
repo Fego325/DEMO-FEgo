@@ -35,12 +35,19 @@ pipeline {
                 // }
             }
         }
-        stage('gitlab') {
-            steps {
-                echo 'Notify GitLab'
-                echo 'test merge fail'
-                updateGitlabCommitStatus name: 'build', state: 'failed'
-            }
+    }
+    post {
+        failure {
+            echo 'Notify GitLab'
+            updateGitlabCommitStatus(name: 'Jenkins', state: 'failed')
+        }
+        success {
+            echo 'Notify GitLab'
+            updateGitlabCommitStatus(name: 'Jenkins', state: 'failed')
+        }
+        aborted {
+            echo 'Notify GitLab'
+            updateGitlabCommitStatus(name: 'Jenkins', state: 'canceled')
         }
     }
 }
