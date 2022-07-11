@@ -3,17 +3,16 @@
 pipeline {
     agent any
 
-    stage("build") {
-        steps {
-            script {
-                echo "building the application ..."
-                sh 'mvn package'
+    stages {
+        stage("build") {
+            steps {
+                script {
+                    echo "building the application ..."
+                    sh 'mvn package'
+                }
             }
         }
-    }
-
-    stages {
-       stage('test') {
+        stage('test') {
             steps {
                 script {
                     echo "Testing the application..."
