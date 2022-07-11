@@ -19,10 +19,16 @@ pipeline {
                 sh 'unzip pipeline-scan-LATEST.zip pipeline-scan.jar'
                 withCredentials([ usernamePassword (credentialsId: 'veracode', usernameVariable: 'VERACODE_API_ID', passwordVariable: 'VERACODE_API_KEY') ]) {
                     sh 'java -jar pipeline-scan.jar \
+                         --veracode_api_id "${VERACODE_API_ID}" \
+                        --veracode_api_key "${VERACODE_API_KEY}" \
+                        --request_policy="VeraDemo Policy"'
+                    sh 'java -jar pipeline-scan.jar \
                         --veracode_api_id "${VERACODE_API_ID}" \
                         --veracode_api_key "${VERACODE_API_KEY}" \
                         --file "target/verademo.war" \
-                        --project_name "Verademo - Web - Jenkins" || true'
+                        --project_name "Verademo - Web - Jenkins" \
+                        --veracode_profile "Verademo - Web - Jenkins" \
+                        --policy_file="VeraDemo Policy.json" || true'
                 }
             }
         }
