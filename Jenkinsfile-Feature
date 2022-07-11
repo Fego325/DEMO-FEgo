@@ -18,6 +18,7 @@ pipeline {
                 sh 'unzip pipeline-scan-LATEST.zip pipeline-scan.jar'
                 withCredentials([ usernamePassword (credentialsId: 'veracode', usernameVariable: 'VERACODE_API_ID', passwordVariable: 'VERACODE_API_KEY') ]) {
                     echo "$VERACODE_API_ID"
+                }
             }
         }
         stage('test') {
