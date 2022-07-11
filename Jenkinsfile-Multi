@@ -8,7 +8,6 @@ pipeline {
             steps {
                 echo "Branch is $BRANCH_NAME"
                 echo "Check if there are any changes pushed into this branch..."
-                echo "$CHANGE_ID"
 
                 script {
                     changeCount = currentBuild.changeSets.size()
@@ -32,6 +31,7 @@ pipeline {
                 }
             }
             steps {
+                echo "$CHANGE_ID"
                 echo 'Veracode scanning ...'
                 // withCredentials([ usernamePassword (credentialsId: 'veracode', usernameVariable: 'VERACODE_API_ID', passwordVariable: 'VERACODE_API_KEY') ]) {
                 //     veracode applicationName: 'Verademo - Web - Jenkins', canFailJob: true, criticality: 'High', fileNamePattern: '', replacementPattern: '', sandboxName: '', scanExcludesPattern: '', scanIncludesPattern: '', scanName: '$timestamp', teams: '', timeout: 60, uploadIncludesPattern: 'target/verademo.war',vid: "${VERACODE_API_ID}", vkey: "${VERACODE_API_KEY}", waitForScan: true
