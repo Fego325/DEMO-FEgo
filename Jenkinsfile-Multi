@@ -6,6 +6,7 @@ pipeline {
     stages {
         stage ("Check changes") {
             steps {
+                echo "Branch is $BRANCH_NAME"
                 echo "Check if there are any changes pushed into this branch..."
 
                 script {
