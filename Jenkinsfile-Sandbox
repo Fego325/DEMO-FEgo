@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo 'Veracode scanning ...'
                 withCredentials([ usernamePassword (credentialsId: 'veracode', usernameVariable: 'VERACODE_API_ID', passwordVariable: 'VERACODE_API_KEY') ]) {
-                    veracode applicationName: 'Verademo - Web - Jenkins', canFailJob: false, criticality: 'High', fileNamePattern: '', replacementPattern: '', createSandbox: true, sandboxName: "feature-$BUILD_NUMBER", scanExcludesPattern: '', scanIncludesPattern: '', scanName: '$timestamp', teams: '', timeout: 60, uploadIncludesPattern: 'target/verademo.war',vid: "${VERACODE_API_ID}", vkey: "${VERACODE_API_KEY}", waitForScan: true
+                    veracode applicationName: 'Verademo - Web - Jenkins', canFailJob: false, criticality: 'High', fileNamePattern: '', replacementPattern: '', createSandbox: true, sandboxName: "staging", scanExcludesPattern: '', scanIncludesPattern: '', scanName: '$timestamp', teams: '', timeout: 60, uploadIncludesPattern: 'target/verademo.war',vid: "${VERACODE_API_ID}", vkey: "${VERACODE_API_KEY}", waitForScan: true
                 }
             }
         }
