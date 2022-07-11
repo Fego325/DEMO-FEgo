@@ -8,8 +8,7 @@ pipeline {
             steps {
                 echo "Branch is $BRANCH_NAME"
                 echo "Check if there are any changes pushed into this branch..."
-                echo "env.CHANGE_ID"
-                echo "env.BRANCH_NAME"
+                echo "$CHANGE_ID"
 
                 script {
                     changeCount = currentBuild.changeSets.size()
