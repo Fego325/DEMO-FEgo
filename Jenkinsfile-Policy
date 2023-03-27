@@ -1,0 +1,41 @@
+#!/usr/bin/env groovy
+
+pipeline {
+    agent any
+
+    stages {
+        stage("build") {
+            steps {
+                script {
+                    echo "building the application ..."
+                    sh 'mvn package'
+                }
+            }
+        }
+        stage('veracode policy scan') {
+            steps {
+                sh 'curl -o veracodeJavaAPI.jar https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/23.3.11.1/vosp-api-wrappers-java-23.3.11.1.jar'
+                sh 'ls -l'
+                withCredentials([ usernamePassword (credentialsId: 'veracode', usernameVariable: 'VERACODE_API_ID', passwordVariable: 'VERACODE_API_KEY') ]) {
+                    sh 'java -jar veracodeJavaAPI.jar \
+                        -vid "${VERACODE_API_ID}" \
+                        -vkey "${VERACODE_API_KEY}" \
+                        -action UploadAndScan \
+                        -filepath "target/verademo.war" \
+                        -appname "Verademo - Web - Jenkins" \
+                        -createprofile true \
+                        -autoscan true \
+                        -scantimeout 60 \
+                        -version $(date +%Y-%m-%d-%H-%M-%S)'
+                }
+            }
+        }
+        stage('test') {
+            steps {
+                script {
+                    echo "Testing the application..."
+                }
+            }
+        }
+    }
+}
