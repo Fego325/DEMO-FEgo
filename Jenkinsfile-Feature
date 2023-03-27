@@ -14,23 +14,25 @@ pipeline {
         }
         stage('veracode pipeline scan') {
             steps {
-                sh 'rm pipeline-scan.jar'
-                sh 'curl -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip'
-                sh 'unzip pipeline-scan-LATEST.zip pipeline-scan.jar'
-                withCredentials([ usernamePassword (credentialsId: 'veracode', usernameVariable: 'VERACODE_API_ID', passwordVariable: 'VERACODE_API_KEY') ]) {
-                    sh 'java -jar pipeline-scan.jar \
-                         --veracode_api_id "${VERACODE_API_ID}" \
-                        --veracode_api_key "${VERACODE_API_KEY}" \
-                        --request_policy="VeraDemo Policy"'
-                    sh 'ls -l'
-                    sh 'java -jar pipeline-scan.jar \
-                        --veracode_api_id "${VERACODE_API_ID}" \
-                        --veracode_api_key "${VERACODE_API_KEY}" \
-                        --file "target/verademo.war" \
-                        --project_name "Verademo - Web - Jenkins" \
-                        --veracode_profile "Verademo - Web - Jenkins" \
-                        --policy_file="VeraDemo_Policy.json" || true'
-                }
+                sh 'wget https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/23.3.11.1/vosp-api-wrappers-java-23.3.11.1.jar -O veracodeJavaAPI.jar'
+                sh 'ls -l'
+                // sh 'rm pipeline-scan.jar'
+                // sh 'curl -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip'
+                // sh 'unzip pipeline-scan-LATEST.zip pipeline-scan.jar'
+                // withCredentials([ usernamePassword (credentialsId: 'veracode', usernameVariable: 'VERACODE_API_ID', passwordVariable: 'VERACODE_API_KEY') ]) {
+                //     sh 'java -jar pipeline-scan.jar \
+                //          --veracode_api_id "${VERACODE_API_ID}" \
+                //         --veracode_api_key "${VERACODE_API_KEY}" \
+                //         --request_policy="VeraDemo Policy"'
+                //     sh 'ls -l'
+                //     sh 'java -jar pipeline-scan.jar \
+                //         --veracode_api_id "${VERACODE_API_ID}" \
+                //         --veracode_api_key "${VERACODE_API_KEY}" \
+                //         --file "target/verademo.war" \
+                //         --project_name "Verademo - Web - Jenkins" \
+                //         --veracode_profile "Verademo - Web - Jenkins" \
+                //         --policy_file="VeraDemo_Policy.json" || true'
+                // }
             }
         }
         stage('test') {
