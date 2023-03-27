@@ -16,6 +16,16 @@ pipeline {
             steps {
                 sh 'curl -o veracodeJavaAPI.jar https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/23.3.11.1/vosp-api-wrappers-java-23.3.11.1.jar'
                 sh 'ls -l'
+                withCredentials([ usernamePassword (credentialsId: 'veracode', usernameVariable: 'VERACODE_API_ID', passwordVariable: 'VERACODE_API_KEY') ]) {
+                    sh 'java -jar veracodeJavaAPI.jar \
+                        -vid "${VERACODE_API_ID}" \
+                        -vkey "${VERACODE_API_KEY}" \
+                        -filepath "target/verademo.war" \
+                        -appname "Verademo - Web - Jenkins" \
+                        -createprofile true \
+                        -autoscan true \
+                        -version "123456789" || true'
+                }
                 // sh 'rm pipeline-scan.jar'
                 // sh 'curl -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip'
                 // sh 'unzip pipeline-scan-LATEST.zip pipeline-scan.jar'
