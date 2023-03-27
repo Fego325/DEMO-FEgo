@@ -20,6 +20,7 @@ pipeline {
                     sh 'java -jar veracodeJavaAPI.jar \
                         -vid "${VERACODE_API_ID}" \
                         -vkey "${VERACODE_API_KEY}" \
+                        -action UploadAndScan \
                         -filepath "target/verademo.war" \
                         -appname "Verademo - Web - Jenkins" \
                         -createprofile true \
