@@ -25,6 +25,7 @@ pipeline {
                         -appname "Verademo - Web - Jenkins" \
                         -createprofile true \
                         -autoscan true \
+                        -scantimeout 60 \
                         -version "123456789" || true'
                 }
                 // sh 'rm pipeline-scan.jar'
