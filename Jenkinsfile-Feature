@@ -26,7 +26,7 @@ pipeline {
                         -createprofile true \
                         -autoscan true \
                         -scantimeout 60 \
-                        -version "123456789" || true'
+                        -version "123456789"'
                 }
                 // sh 'rm pipeline-scan.jar'
                 // sh 'curl -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip'
