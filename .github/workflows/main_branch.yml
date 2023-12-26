@@ -39,7 +39,7 @@ jobs:
           uses : veracode/veracode-uploadandscan-action@master
           id: upload_and_scan
           with:
-                appname: "Verademo GitHub Training"
+                appname: 'Verademo GitHub Training'
                 createprofile: true
                 version: '${{github.run_id}}'
                 filepath: 'verademo.war'
