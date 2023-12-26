@@ -35,7 +35,7 @@ jobs:
           with:
             name: verademo.war
             path: .
-        - name: Veracdoe Upload and Scan Action Step
+        - name: Veracode Upload and Scan Action Step
           uses : veracode/veracode-uploadscan-action@master
           id: upload_and_scan
           with:
