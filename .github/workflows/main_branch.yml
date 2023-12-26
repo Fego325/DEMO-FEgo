@@ -43,7 +43,7 @@ jobs:
                 createprofile: true
                 version: '${{github.run_id}}'
                 filepath: 'verademo.war'
-                vid: 'e20ba9508201f789b667fafd1a00184b'
-                vkey: '5f8f7b331b7128f67b01fa153cf340d2debcd30aa0cf1a72aefd68ade7567e0382586842e28672b3d441ed99d2351c2ee18f18d69668a917'
+                vid: '4ef5eb9499f5b2c663ec2af768d1bcca'
+                vkey: 'd93cd25ef554a1a0ce0bb93d59d929dda016fdadab7a149039113a4f31c140924d2c69955be6086dde709dca2d7cc389bdc881660dc657520cbae7646e862d7d'
                 scantimeout: 15
 
