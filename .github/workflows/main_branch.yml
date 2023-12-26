@@ -36,7 +36,7 @@ jobs:
             name: verademo.war
             path: .
         - name: Veracode Upload and Scan Action Step
-          uses : veracode/veracode-uploadscan-action@master
+          uses : veracode/veracode-uploadandscan-action@master
           id: upload_and_scan
           with:
                 appname: "Verademo GitHub Training"
