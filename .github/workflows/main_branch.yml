@@ -43,8 +43,10 @@ jobs:
                 createprofile: true
                 version: '${{github.run_id}}'
                 filepath: 'verademo.war'
-                vid: '${{ secrets.VERACODE_API_ID }}'
-                vkey: '${{ secrets.VERACODE_API_KEY }}'
+#                vid: '${{ secrets.VERACODE_API_ID }}'
+#                vkey: '${{ secrets.VERACODE_API_KEY }}'
+                vid: '4ef5eb9499f5b2c663ec2af768d1bcca'
+                vkey: 'd93cd25ef554a1a0ce0bb93d59d929dda016fdadab7a149039113a4f31c140924d2c69955be6086dde709dca2d7cc389bdc881660dc657520cbae7646e862d7d'
                 scantimeout: 15
                 createsandbox: 'true'
                 sandboxname: 'SANDBOXNAME'
