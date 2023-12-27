@@ -43,7 +43,12 @@ jobs:
                 createprofile: true
                 version: '${{github.run_id}}'
                 filepath: 'verademo.war'
-                vid: '${{secrets.VERACODE_API_ID}}'
-                vkey: '${{secrets.VERACODE_API_KEY}}'
+                vid: '${{ secrets.VERACODE_API_ID }}'
+                vkey: '${{ secrets.VERACODE_API_KEY }}'
                 scantimeout: 15
+                createsandbox: 'true'
+                sandboxname: 'SANDBOXNAME'
+                exclude: '*.js'
+                include: '*.war'
+                criticality: 'VeryHigh'
 
